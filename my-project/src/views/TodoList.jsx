@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const TodoList = () => {
   return (
     <section className="antialiased h-screen w-screen bg-white text-slate-700">
@@ -7,15 +9,15 @@ const TodoList = () => {
             <h1 className="text-3xl font-medium">All Tasks</h1>
           </div>
           <div className="inline-flex space-x-2 items-center">
-            <a
-              href="#"
+            <Link
+              to={'/add-form'}
               className="p-2 border border-slate-200 rounded-md inline-flex space-x-1 items-center text-indigo-200 hover:text-white bg-indigo-600 hover:bg-indigo-500"
             >
 
               <span className="text-sm font-medium hidden md:block">
                 Add a new tasks
               </span>
-            </a>
+            </Link>
           </div>
         </div>
         <p className="text-slate-500">Hello, here are your latest tasks</p>
