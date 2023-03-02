@@ -66,3 +66,9 @@ export const login = (data) => {
       });
   };
 };
+
+export const logout = () => {
+  return (dispatch) => {
+    localStorage.clear();
+  };
+};

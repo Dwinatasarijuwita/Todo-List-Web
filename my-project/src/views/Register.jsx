@@ -31,7 +31,7 @@ const Register = () => {
     event.preventDefault();
     try {
       dispatcher(register(values));
-      movePage("/login");
+      movePage("login");
     } catch (error) {
       console.log(error);
     }
