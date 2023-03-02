@@ -3,9 +3,19 @@ import BaseLayout from "../layouts/BaseLayout";
 import AddCategory from "../views/AddCategory";
 import AddForm from "../views/AddForm";
 import Favourites from "../views/Favourites";
+import Login from "../views/Login";
+import Register from "../views/Register";
 import TodoList from "../views/TodoList";
 
 const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Register />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
   {
     element: <BaseLayout />,
     children: [
