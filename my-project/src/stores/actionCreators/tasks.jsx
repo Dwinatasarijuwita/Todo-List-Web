@@ -1,4 +1,5 @@
 import { FETCH_DATA_TASKS } from "../actionType";
+import Swal from "sweetalert2";
 
 export const actionSetTasks = (payload) => {
   return {
@@ -45,6 +46,11 @@ export const addTasks = (data) => {
       })
       .then((data) => {
         dispatch(fetchDataTasks());
+        Swal.fire({
+          title: "Success",
+          type: "success",
+          text: "Your data has been saved.",
+        });
         console.log(data);
       })
       .catch((error) => {
@@ -70,6 +76,11 @@ export const deleteTasks = (id) => {
       })
       .then((data) => {
         dispatch(fetchDataTasks());
+        Swal.fire({
+          title: "Success",
+          type: "success",
+          text: "Your data has been deleted.",
+        });
       });
   };
 };

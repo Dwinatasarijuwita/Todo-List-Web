@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { register } from "../stores/actionCreators/users";
+import TodoList from "../assets/Todo.png";
 
 const Register = () => {
   const input = {
@@ -41,15 +42,10 @@ const Register = () => {
       <div className="bg-white h-screen text-black py-12">
         <div className="container mx-auto flex flex-col md:flex-row my-6 md:my-24">
           <div className="flex flex-col w-full lg:w-1/3 p-8 ml-[50px]">
-            <p className="ml-6 text-yellow-300 text-lg uppercase tracking-loose">
-              Register
-            </p>
-            <p className="text-3xl md:text-5xl my-4 leading-relaxed md:leading-snug">
+            <p className="text-8xl my-4 leading-relaxed md:leading-snug">
               To Do List!
             </p>
-            <p className="text-sm md:text-base leading-snug text-black text-opacity-100">
-              Please provide your valuable feedback and something something ...
-            </p>
+            <img src={TodoList} />
           </div>
           <div className="flex flex-col w-full lg:w-2/3 justify-center">
             <div className="container w-full px-4">

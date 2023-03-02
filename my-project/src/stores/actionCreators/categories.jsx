@@ -1,4 +1,5 @@
 import { FETCH_DATA_CATEGORY } from "../actionType";
+import Swal from "sweetalert2";
 
 export const actionSetCategory = (payload) => {
   return {
@@ -45,6 +46,11 @@ export const newCategory = (data) => {
       })
       .then((data) => {
         dispatch(fetchDataCategory());
+        Swal.fire({
+          title: "Success",
+          type: "success",
+          text: "Your data has been saved.",
+        });
         console.log(data);
       })
       .catch((error) => {
@@ -70,6 +76,11 @@ export const deleteCategory = (id) => {
       })
       .then((data) => {
         dispatch(fetchDataCategory());
+        Swal.fire({
+          title: "Success",
+          type: "success",
+          text: "Your data has been deleted.",
+        });
       });
   };
 };

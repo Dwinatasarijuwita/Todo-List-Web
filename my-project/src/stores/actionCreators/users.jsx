@@ -1,6 +1,8 @@
 import { USER_LOGIN, USER_REGISTER } from "../actionType";
 import { fetchDataTasks } from "./tasks";
 
+import Swal from "sweetalert2";
+
 export const actionCreateNewUser = (payload) => {
   return {
     type: USER_REGISTER,
@@ -25,6 +27,11 @@ export const register = (data) => {
       })
       .then((data) => {
         dispatch(actionCreateNewUser(data));
+        Swal.fire({
+          title: "Success",
+          type: "success",
+          text: "Your data has been saved.",
+        });
         console.log(data);
       })
       .catch((error) => {
@@ -59,6 +66,11 @@ export const login = (data) => {
       .then((data) => {
         localStorage.setItem("access_token", data.access_token);
         dispatch(fetchDataTasks());
+        Swal.fire({
+          title: "Success",
+          type: "success",
+          text: "you have successfully logged in",
+        });
         console.log(data);
       })
       .catch((error) => {
@@ -70,5 +82,10 @@ export const login = (data) => {
 export const logout = () => {
   return (dispatch) => {
     localStorage.clear();
+    Swal.fire({
+      title: "Success",
+      type: "success",
+      text: "You have successfully logout.",
+    });
   };
 };
