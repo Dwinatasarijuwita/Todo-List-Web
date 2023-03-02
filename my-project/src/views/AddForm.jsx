@@ -1,4 +1,36 @@
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { addTasks } from "../stores/actionCreators/tasks";
 const AddForm = () => {
+  const input = {
+    name: "",
+    category: "",
+  };
+
+  const [values, setValues] = useState(input);
+
+  const dispatcher = useDispatch();
+  const movePage = useNavigate();
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setValues({
+      ...values,
+      [name]: value,
+    });
+    console.log(value);
+  };
+
+  const handleAdd = async (event) => {
+    event.preventDefault();
+    try {
+      dispatcher(addTasks(values));
+      movePage("/list");
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <section>
       <div class="bg-white text-white">
@@ -12,7 +44,7 @@ const AddForm = () => {
                       <h4 class="text-2xl mb-4 text-black font-semibold">
                         Have a new tasks?
                       </h4>
-                      <form id="feedbackForm" action="" method="">
+                      <form id="feedbackForm" onSubmit={handleAdd}>
                         <div class="relative w-full mb-3">
                           <label
                             class="block uppercase text-gray-700 text-xs font-bold mb-2"
@@ -21,8 +53,10 @@ const AddForm = () => {
                             Name
                           </label>
                           <input
-                            type="name"
+                            type="text"
                             name="name"
+                            onChange={handleChange}
+                            value={values.name}
                             id="name"
                             class="border-0 px-3 py-3 rounded text-sm shadow w-full
                     bg-gray-300 placeholder-black text-gray-800 outline-none focus:bg-gray-400"
@@ -41,6 +75,8 @@ const AddForm = () => {
                           <input
                             maxlength="300"
                             name="category"
+                            onChange={handleChange}
+                            value={values.category}
                             id="category"
                             rows="4"
                             cols="80"
