@@ -24,6 +24,27 @@ class CategoryController {
       res.status(500).json({ message: "Internal Server Error" });
     }
   }
+
+  static async deleteCategory(req, res) {
+    try {
+      let id = req.params.id;
+      let dataUser = await Categories.findByPk(id);
+      if (!dataUser) {
+        throw {
+          name: "notFound",
+        };
+      }
+      let data = await Categories.deleteCategory(id);
+      res.status(200).json({ message: "Delete Success" });
+    } catch (error) {
+      console.log(error);
+      if (error.name === "notFound") {
+        res.status(400).json({ message: "Data Not Found" });
+      } else {
+        res.status(500).json({ message: "Internal Server Error" });
+      }
+    }
+  }
 }
 
 module.exports = CategoryController;

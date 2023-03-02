@@ -1,4 +1,5 @@
 const { getDatabase } = require("../config/mongoConnection");
+const { ObjectId } = require("mongodb");
 
 class Category {
   static async findCategory() {
@@ -22,6 +23,32 @@ class Category {
       let categoryCollection = db.collection("Categories");
       let res = await categoryCollection.insertOne(data);
       return res;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  static async findByPk(id) {
+    try {
+      let db = getDatabase();
+      let tasksCollection = db.collection("Categories");
+      let data = await tasksCollection.findOne({
+        _id: new ObjectId(id),
+      });
+      return data;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  static async deleteCategory(id) {
+    try {
+      let db = getDatabase();
+      let tasksCollection = db.collection("Categories");
+      let data = await tasksCollection.deleteOne({
+        _id: new ObjectId(id),
+      });
+      return data;
     } catch (error) {
       throw error;
     }

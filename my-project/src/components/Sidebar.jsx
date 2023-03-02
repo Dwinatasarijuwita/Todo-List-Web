@@ -1,7 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchDataCategory } from "../stores/actionCreators/categories";
+import {
+  deleteCategory,
+  fetchDataCategory,
+} from "../stores/actionCreators/categories";
 import { logout } from "../stores/actionCreators/users";
 
 const Sidebar = () => {
@@ -11,6 +14,10 @@ const Sidebar = () => {
   useEffect(() => {
     dispatcher(fetchDataCategory());
   }, []);
+
+  function handleDelete(id) {
+    dispatcher(deleteCategory(id));
+  }
 
   const handleLogout = (event) => {
     event.preventDefault();
@@ -61,6 +68,7 @@ const Sidebar = () => {
               {categories.map((el) => {
                 return (
                   <a
+                    onClick={() => handleDelete(el._id)}
                     key={el.id}
                     className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6"
                   >
